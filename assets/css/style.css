@@ -1,0 +1,251 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    border: none;
+    list-style: none;
+    text-decoration: none;
+    color: var(--clr-primary);
+    font-weight: 500;
+}
+
+*::selection {
+    color: var(--clr-primary);
+    background: var(--clr-accent);
+}
+
+:root {
+    --clr-bg: #f1f1ef;
+    --clr-primary: #101010;
+    --clr-secondary: #ffff;
+    --clr-accent: #a485f3;
+    --size: clamp(35rem, 1rem + 40vmin, 30rem);
+    --gap: calc(var(--size) / 35);
+    --duration: 60s;
+
+
+}
+
+@font-face {
+    font-family: 'Nimbus Sans D OT Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Nimbus Sans D OT Light'), url('../fonts/Nimbus-Sans-D-OT-Light_32752.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Nimbus Sans D OT Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Nimbus Sans D OT Bold'), url('../fonts/Nimbus-Sans-D-OT-Bold_32747.woff') format('woff');
+}
+
+
+
+body {
+
+    background-color: var(--clr-bg);
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 100%;
+    font-size: 0.9rem;
+    font-family: "akzi";
+    font-weight: 600;
+    font-style: normal;
+    transition: all 1.2s ease-in-out;
+    font-family: 'Nimbus Sans D OT Light';
+}
+
+
+
+
+nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 13vh;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 2%;
+
+
+
+}
+
+nav h1 {
+    color: var(--clr-primary);
+    font-family: 'Nimbus Sans D OT Bold';
+
+
+}
+
+
+
+.nav__link {
+    color: var(--clr-primary);
+
+}
+
+
+ul,
+li {
+    display: flex;
+    flex-direction: row;
+    margin-right: 2rem;
+    color: var(--clr-bg);
+
+
+}
+
+
+.elem__nav {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1rem;
+    border-radius: 8px;
+
+}
+
+.elem__nav:last-child {
+
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: right;
+}
+
+
+.btn {
+    text-decoration: none;
+    color: var(--clr-primary);
+    position: relative;
+    text-transform: uppercase;
+    padding: 5px 23px 5px 10px;
+    transition: all 0.6s ease;
+}
+
+
+.btn:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: -3em;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: var(--clr-primary);
+    width: 2.6em;
+    height: 2.6em;
+    border-radius: 5em;
+    transition: all 0.6s cubic-bezier(0.615, 0, 0.07, 1);
+}
+
+.btn:after {
+    content: url("../images/message-solid.svg");
+    font-size: 0.7rem;
+    position: absolute;
+    z-index: -1;
+    left: -1.98rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+
+.btn:hover {
+    transition: all 0.6s ease;
+    transition-delay: 0.3s;
+    color: var(--clr-bg);
+}
+
+.btn:hover:before {
+    transition: all 0.6s cubic-bezier(0.615, 0, 0.07, 1);
+    width: 140%;
+}
+
+.container__page {
+    background-color: var(--clr-bg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    margin-bottom: 100vh;
+    position: relative;
+}
+
+.projet {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-primary);
+    font-size: 15rem;
+    font-family: 'Nimbus Sans D OT Bold';
+  }
+  .projet h3{
+    color: var(--clr-bg) !important;
+  }
+
+header {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+header h2 {
+    text-align: center;
+    font-size: 15rem;
+    font-family: 'Nimbus Sans D OT Bold';
+    line-height: 13rem;
+
+
+}
+
+header p {
+    line-height: 2rem;
+
+
+}
+
+.blacked {
+    width: 100%;
+    height: 100vh;
+    background-color: blue;
+
+}
+
+.chepo{
+    background-color: red; 
+    height: 50vh;
+    width: 15vw;
+    position: absolute;
+}
+
+.test {
+
+    background-color: orange;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0px;
+    z-index: 0;
+}
