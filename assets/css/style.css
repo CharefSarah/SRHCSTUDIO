@@ -8,26 +8,25 @@
     border: none;
     list-style: none;
     text-decoration: none;
-    color: var(--clr-primary);
     font-weight: 500;
 }
 
-*::selection {
-    color: var(--clr-primary);
-    background: var(--clr-accent);
-}
+
 
 :root {
-    --clr-bg: #f1f1ef;
+    --clr-bg: #F0F0F0;
     --clr-primary: #101010;
     --clr-secondary: #ffff;
+    --clr-font: rgb(172, 172, 172);
     --clr-accent: #a485f3;
+    --font-size: 16px;
     --size: clamp(35rem, 1rem + 40vmin, 30rem);
     --gap: calc(var(--size) / 35);
     --duration: 60s;
 
 
 }
+
 
 @font-face {
     font-family: 'Nimbus Sans D OT Light';
@@ -43,20 +42,44 @@
     src: local('Nimbus Sans D OT Bold'), url('../fonts/Nimbus-Sans-D-OT-Bold_32747.woff') format('woff');
 }
 
+@font-face {
+    font-family: 'PP';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/PPFragment-SerifLight.otf') format('OpenType');
+}
 
+@font-face {
+    font-family: 'Nostra';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/Nostrav1.0-StreamTrial.otf') format('OpenType');
+}
+
+
+.circle {
+    height: 16px;
+    width: 16px;
+    border-radius: 16px;
+    background-color: black;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999999; 
+  }
 
 body {
 
-    background-color: var(--clr-bg);
     scroll-behavior: smooth;
     width: 100%;
     height: 100%;
-    font-size: 0.9rem;
-    font-family: "akzi";
+    font-size: 1rem;
     font-weight: 600;
     font-style: normal;
     transition: all 1.2s ease-in-out;
     font-family: 'Nimbus Sans D OT Light';
+    overflow-x: hidden;
 }
 
 
@@ -70,14 +93,13 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding-inline: 2%;
-
-
+    top: 0;
 
 }
 
 nav h1 {
     color: var(--clr-primary);
-    font-family: 'Nimbus Sans D OT Bold';
+    font-family: 'Nimbus Sans D OT Light';
 
 
 }
@@ -86,7 +108,45 @@ nav h1 {
 
 .nav__link {
     color: var(--clr-primary);
+    padding-bottom: 0.5em;
 
+}
+
+
+a,
+a>span {
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+    line-height: 20px;
+
+}
+
+a:before,
+a:after,
+a>span:before,
+a>span:after {
+    content: '';
+    position: absolute;
+    transition: transform .2s ease;
+}
+
+.hover__1 {
+    padding-top: 13px;
+
+}
+
+.hover__1:before {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--clr-primary);
+    transform: scaleX(0);
+}
+
+.hover__1:hover:before {
+    transform: scaleX(1);
 }
 
 
@@ -122,7 +182,8 @@ li {
 }
 
 
-.btn {
+.btn,
+.button {
     text-decoration: none;
     color: var(--clr-primary);
     position: relative;
@@ -132,7 +193,8 @@ li {
 }
 
 
-.btn:before {
+.btn:before,
+.button:before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -147,12 +209,28 @@ li {
     transition: all 0.6s cubic-bezier(0.615, 0, 0.07, 1);
 }
 
+
+
+
 .btn:after {
     content: url("../images/message-solid.svg");
     font-size: 0.7rem;
     position: absolute;
     z-index: -1;
-    left: -1.98rem;
+    left: -2.1rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.button:after {
+    content: url("../images/message-solid.svg");
+    font-size: 0.7rem;
+    position: absolute;
+    z-index: -1;
+    left: -1.85rem;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -161,7 +239,8 @@ li {
 }
 
 
-.btn:hover {
+.btn:hover,
+.button:hover {
     transition: all 0.6s ease;
     transition-delay: 0.3s;
     color: var(--clr-bg);
@@ -171,6 +250,12 @@ li {
     transition: all 0.6s cubic-bezier(0.615, 0, 0.07, 1);
     width: 140%;
 }
+
+.button:hover:before {
+    transition: all 0.6s cubic-bezier(0.615, 0, 0.07, 1);
+    width: 125%;
+}
+
 
 .container__page {
     background-color: var(--clr-bg);
@@ -184,24 +269,10 @@ li {
     position: relative;
 }
 
-.projet {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--clr-primary);
-    font-size: 15rem;
-    font-family: 'Nimbus Sans D OT Bold';
-  }
-  .projet h3{
-    color: var(--clr-bg) !important;
-  }
 
 header {
     width: 100%;
-    height: 75vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -211,11 +282,16 @@ header {
 
 header h2 {
     text-align: center;
-    font-size: 15rem;
-    font-family: 'Nimbus Sans D OT Bold';
+    font-size: 13rem;
+    font-family: 'PP';
     line-height: 13rem;
+    width: 70%;
 
 
+}
+
+.accent {
+    font-family: 'Nostra';
 }
 
 header p {
@@ -224,23 +300,80 @@ header p {
 
 }
 
-.blacked {
+.work {
     width: 100%;
-    height: 100vh;
-    background-color: blue;
+    height: 100%;
+    background-color: var(--clr-primary);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
 
 }
 
-.chepo{
-    background-color: red; 
-    height: 50vh;
-    width: 15vw;
-    position: absolute;
+.marquee {
+    display: flex;
+    overflow: hidden;
+    width: 100vw;
+    height: 30vh;
 }
 
-.test {
+.marquee h3 {
+    color: var(--clr-bg);
+    font-family: 'PP';
+    font-size: 5rem;
+    white-space: nowrap;
+    text-transform: uppercase;
+    align-self: center;
+}
 
-    background-color: orange;
+
+
+.highlight__projet {
+    padding: 2rem;
+    width: calc(100% - 10rem);
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(../images/projet/Group\ 22.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin: auto;
+    margin-bottom: 5rem;
+
+}
+
+.highlight__projet h4 {
+    font-size: 1.5rem;
+    font-family: 'Nimbus Sans D OT Bold';
+}
+
+.button__projet__hightlight {
+    width: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nimbus Sans D OT Bold';
+    border: 2px solid var(--clr-primary);
+    color: var(--clr-primary);
+}
+
+
+
+.button__projet__hightlight:hover {
+    background-color: var(--clr-primary);
+    color: var(--clr-bg);
+    border: 2px solid var(--clr-primary);
+}
+
+
+
+.footer {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -248,4 +381,190 @@ header p {
     position: fixed;
     bottom: 0px;
     z-index: 0;
+    padding-inline: 2%;
+}
+
+.footer__top {
+    padding-left: 2.4rem;
+}
+
+.footer__top,
+.footer__bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+
+}
+
+
+.footer__middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+
+}
+
+.footer__middle a {
+    text-align: center;
+    font-size: 6.9rem;
+    font-family: 'PP';
+    line-height: 10rem;
+    width: 70%;
+    cursor: pointer;
+}
+
+.button {
+    background-color: transparent;
+}
+
+.elem__footer__bottom {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.link__footer {
+    background-color: var(--clr-primary);
+    width: 2.6em;
+    height: 2.6em;
+    color: var(--clr-bg);
+    border-radius: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2rem;
+    transition: width, color, background-color, 0.2s;
+
+}
+
+.link__footer:hover {
+    width: 2.9em;
+    height: 2.9em;
+    background-color: var(--clr-bg);
+    color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+
+}
+
+
+.elem__footer__bottom:last-child {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    font-size: 1.5rem;
+}
+
+#button {
+    font-family: 'Nimbus Sans D OT Light';
+    font-size: 16px;
+    background-color: transparent;
+}
+
+
+.page__projet__mn {
+    background-color: var(--clr-primary);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.projet__description__title {
+    background-color: var(--clr-bg);
+    width: 100%;
+    height: 40vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+
+}
+
+.projet__description__title h2 {
+    margin-top: 5rem;
+    color: var(--clr-primary);
+    font-family: 'PP';
+    font-size: 5rem;
+    white-space: nowrap;
+    text-transform: uppercase;
+    align-self: center;
+    text-align: center;
+}
+
+.projet__description__title h3 {
+    line-height: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+
+}
+
+.projet__explanation {
+    width: 100%;
+    height: 30vh;
+    color: var(--clr-bg);
+    display: flex;
+    flex-direction: row;
+}
+
+.elem__explenation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.elem__explenation:first-child {
+    align-items: start;
+    justify-content: center;
+}
+
+.elem__explenation:last-child{
+    align-items: end;
+    justify-content: center;
+
+
+    
+}
+.role__list{
+    display: flex;
+    flex-direction: column;
+    line-height: 2rem;
+}
+
+.elem__explenation h4{
+
+    line-height: 2rem;
+    text-transform: uppercase;
+    align-self: right;
+    width: 60%;
+    margin-left: 2.9rem;
+
+}
+
+.image__projet__cover {
+    width: 100%;
+    margin-bottom: 5rem;
+}
+
+.image__projet {
+    width: calc(100% - 10rem);
+    margin: auto;
+    margin-bottom: 5rem;
+
+
 }
